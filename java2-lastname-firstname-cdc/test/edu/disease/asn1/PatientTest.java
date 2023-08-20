@@ -13,7 +13,7 @@ import edu.disease.asn1.constants.ExposureConstants;
 import exception.UnknownExposureTypeException;
 
 public class PatientTest {
-
+	
 	@Test
 	public void testPatientConstructor() {
 		int maxDiseases = 3;
@@ -31,6 +31,47 @@ public class PatientTest {
 		int maxExposures = -1;
 
 		new Patient(maxDiseases, maxExposures);
+	}
+
+	@Test
+	public void testGetFirstName() {
+		Patient patient = new Patient(3, 2);
+		patient.setFirstName("John");
+		assertEquals("John", patient.getFirstName());
+	}
+
+	@Test
+	public void testSetFirstName() {
+		Patient patient = new Patient(3, 2);
+		patient.setFirstName("Alice");
+		assertEquals("Alice", patient.getFirstName());
+	}
+
+	@Test
+	public void testGetLastName() {
+		Patient patient = new Patient(3, 2);
+		patient.setLastName("Doe");
+		assertEquals("Doe", patient.getLastName());
+	}
+
+	@Test
+	public void testToString() {
+		Patient patient = new Patient(3, 2);
+		patient.setPatientId(UUID.randomUUID());
+		patient.setFirstName("John");
+		patient.setLastName("Doe");
+
+		String expected = "Patient [patientId=" + patient.getPatientId()
+				+ ", firstName=John, lastName=Doe, exposures=[null, null], diseaseIds=[null, null, null]]";
+
+		assertEquals(expected, patient.toString());
+	}
+
+	@Test
+	public void testSetLastName() {
+		Patient patient = new Patient(3, 2);
+		patient.setLastName("Sam");
+		assertEquals("Sam", patient.getLastName());
 	}
 
 	@Test
@@ -161,7 +202,7 @@ public class PatientTest {
 		assertTrue(patient1a.equals(patient1b));
 		assertTrue(patient1b.equals(patient1a));
 		assertFalse(patient1a.equals(patient2));
-		
+
 		assertEquals(patient1a.hashCode(), patient1b.hashCode());
 
 	}

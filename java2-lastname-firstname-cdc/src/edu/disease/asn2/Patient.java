@@ -165,6 +165,14 @@ public class Patient implements Comparable<Patient> {
 		if (lastNameComparison != 0) {
 			return lastNameComparison;
 		}
+		
+		if (this.firstName == null && that.firstName == null) {
+			return 0;
+		} else if (this.firstName == null) {
+			return -1;
+		} else if (that.firstName == null) {
+			return 1;
+		}
 		// if lastNames are equal , compare by firstNames
 		int firstNameComparison = this.firstName.compareToIgnoreCase(that.firstName);
 

@@ -89,7 +89,6 @@ public class DiseaseControlManagerImplTest {
 		assertNotNull(retrivedDisease);
 		assertEquals(disease1.getDiseaseId(), retrivedDisease.getDiseaseId());
 		assertEquals("Malaria", retrivedDisease.getName());
-
 	}
 
 	@Test
