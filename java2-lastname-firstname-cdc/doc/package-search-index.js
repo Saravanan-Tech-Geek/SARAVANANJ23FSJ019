@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"edu.disease.asn1"},{"l":"edu.disease.asn1.constants"},{"l":"exception"}];updateSearchResults();
