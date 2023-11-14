@@ -1,15 +1,14 @@
-package edu.disease.asn2;
+package edu.disease.asn3;
 
 import java.util.UUID;
 
-import edu.disease.asn1.Exposure;
 
 public class DiseaseControlManagerImpl implements DiseaseControlManager {
 
 	private Disease[] diseases;
 	private Patient[] patients;
 
-	DiseaseControlManagerImpl(int maxDiseases, int maxPatients) {
+	public DiseaseControlManagerImpl(int maxDiseases, int maxPatients) {
 		if (maxDiseases <= 0 || maxPatients <= 0) {
 			throw new IllegalArgumentException("Supplied Integer cannot be used to initialize the arrays");
 		}

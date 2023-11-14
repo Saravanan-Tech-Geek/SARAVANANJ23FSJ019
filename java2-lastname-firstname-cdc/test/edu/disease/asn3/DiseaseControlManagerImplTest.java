@@ -1,4 +1,4 @@
-package edu.disease.asn2;
+package edu.disease.asn3;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -8,8 +8,8 @@ import java.util.UUID;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import edu.disease.asn1.Exposure;
 import edu.disease.asn1.constants.ExposureConstants;
+
 
 public class DiseaseControlManagerImplTest {
 

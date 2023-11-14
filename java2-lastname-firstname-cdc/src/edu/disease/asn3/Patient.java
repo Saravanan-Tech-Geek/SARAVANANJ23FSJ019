@@ -1,5 +1,6 @@
-package edu.disease.asn1;
+package edu.disease.asn3;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.UUID;
@@ -11,7 +12,11 @@ import exception.UnknownExposureTypeException;
  * @author Saravanan Selvaraj
  * @version 1.0.0
  */
-public class Patient {
+
+public class Patient implements Comparable<Patient>, Serializable {
+	
+	private static final long serialVersionUID = 1L;
+	
 	private UUID patientId;
 	private String firstName;
 	private String lastName;
@@ -22,12 +27,10 @@ public class Patient {
 		if (maxDiseases <= 0 || maxExposures <= 0) {
 			throw new UnknownExposureTypeException("maxDiseases and maxExposure must be positive values");
 		}
-		//this.diseaseIds = new UUID[maxDiseases];
-		this.exposures = new Exposure[maxExposures];
 		this.diseaseIds = new UUID[maxDiseases];
-		
+		this.exposures = new Exposure[maxExposures];
+
 	}
-	
 
 	public void addDiseaseId(UUID dieaseId) {
 		if (isDiseaseIdsFull()) {
@@ -148,6 +151,54 @@ public class Patient {
 	public String toString() {
 		return "Patient [patientId=" + patientId + ", firstName=" + firstName + ", lastName=" + lastName
 				+ ", exposures=" + Arrays.toString(exposures) + ", diseaseIds=" + Arrays.toString(diseaseIds) + "]";
+	}
+
+	@Override
+	public int compareTo(Patient that) {
+		// Check for null values and handle them appropriately
+		if (this.lastName == null && that.lastName == null) {
+			return 0;
+		} else if (this.lastName == null) {
+			return -1;
+		} else if (that.lastName == null) {
+			return 1;
+		}
+
+		int lastNameComparison = this.lastName.compareToIgnoreCase(that.lastName);
+
+		if (lastNameComparison != 0) {
+			return lastNameComparison;
+		}
+		
+		if (this.firstName == null && that.firstName == null) {
+			return 0;
+		} else if (this.firstName == null) {
+			return -1;
+		} else if (that.firstName == null) {
+			return 1;
+		}
+		// if lastNames are equal , compare by firstNames
+		int firstNameComparison = this.firstName.compareToIgnoreCase(that.firstName);
+
+		return firstNameComparison;
+	}
+
+	public boolean hasExposure(Exposure exposure) {
+		for (Exposure e : exposures) {
+            if (e != null && e.equals(exposure)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+	public boolean hasDisease(UUID diseaseId) {
+		for (UUID d : diseaseIds) {
+            if (d != null && d.equals(diseaseId)) {
+                return true;
+            }
+        }
+        return false;
 	}
 
 }

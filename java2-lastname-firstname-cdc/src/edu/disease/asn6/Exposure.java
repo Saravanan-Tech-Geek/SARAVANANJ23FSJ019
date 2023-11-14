@@ -1,20 +1,22 @@
-package edu.disease.asn1;
+package edu.disease.asn6;
 
 import static edu.disease.asn1.constants.ExposureConstants.DIRECT_EXPOSURE;
 import static edu.disease.asn1.constants.ExposureConstants.INDIRECT_EXPOSURE;
 import exception.UnknownExposureTypeException;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.UUID;
-
 /**
  * 
  * @author Saravanan Selvaraj
  * @version 1.0.0
  */
-public class Exposure {
+public class Exposure implements Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	private LocalDateTime dateTime;
 	private UUID patientId;
 	private String exposureType;
