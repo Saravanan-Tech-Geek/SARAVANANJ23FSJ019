@@ -8,23 +8,33 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.UUID;
+
 /**
- * 
+ * The Class Exposure.
+ *
  * @author Saravanan Selvaraj
  * @version 1.0.0
  */
 public class Exposure implements Serializable {
 
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 	
+	/** The date time. */
 	private LocalDateTime dateTime;
+	
+	/** The patient id. */
 	private UUID patientId;
+	
+	/** The exposure type. */
 	private String exposureType;
 
 	/**
-	 * @param dateTime
-	 * @param patientId
-	 * @param exposureType
+	 * Instantiates a new exposure.
+	 *
+	 * @param dateTime the date time
+	 * @param patientId the patient id
+	 * @param exposureType the exposure type
 	 */
 	public Exposure(LocalDateTime dateTime, UUID patientId, String exposureType) {
 		super();
@@ -34,6 +44,8 @@ public class Exposure implements Serializable {
 	}
 
 	/**
+	 * Gets the date time.
+	 *
 	 * @return the dateTime
 	 */
 	public LocalDateTime getDateTime() {
@@ -41,6 +53,8 @@ public class Exposure implements Serializable {
 	}
 
 	/**
+	 * Sets the date time.
+	 *
 	 * @param dateTime the dateTime to set
 	 */
 	public void setDateTime(LocalDateTime dateTime) {
@@ -48,6 +62,8 @@ public class Exposure implements Serializable {
 	}
 
 	/**
+	 * Gets the patient id.
+	 *
 	 * @return the patientId
 	 */
 	public UUID getPatientId() {
@@ -55,6 +71,8 @@ public class Exposure implements Serializable {
 	}
 
 	/**
+	 * Sets the patient id.
+	 *
 	 * @param patientId the patientId to set
 	 */
 	public void setPatientId(UUID patientId) {
@@ -62,6 +80,8 @@ public class Exposure implements Serializable {
 	}
 
 	/**
+	 * Gets the exposure type.
+	 *
 	 * @return the exposureType
 	 */
 	public String getExposureType() {
@@ -69,6 +89,8 @@ public class Exposure implements Serializable {
 	}
 
 	/**
+	 * Sets the exposure type.
+	 *
 	 * @param exposureType the exposureType to set
 	 */
 	public void setExposureType(String exposureType) {
@@ -80,11 +102,22 @@ public class Exposure implements Serializable {
 		}
 	}
 
+	/**
+	 * Hash code.
+	 *
+	 * @return the int
+	 */
 	@Override
 	public int hashCode() {
 		return Objects.hash(dateTime, patientId);
 	}
 
+	/**
+	 * Equals.
+	 *
+	 * @param obj the obj
+	 * @return true, if successful
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -97,6 +130,11 @@ public class Exposure implements Serializable {
 		return Objects.equals(dateTime, other.dateTime) && Objects.equals(patientId, other.patientId);
 	}
 
+	/**
+	 * To string.
+	 *
+	 * @return the string
+	 */
 	@Override
 	public String toString() {
 		return "Exposure [dateTime=" + dateTime + ", patientId=" + patientId + ", exposureType=" + exposureType + "]";

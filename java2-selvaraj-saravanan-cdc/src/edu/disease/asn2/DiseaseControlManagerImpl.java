@@ -4,11 +4,23 @@ import java.util.UUID;
 
 import edu.disease.asn1.Exposure;
 
+/**
+ * The Class DiseaseControlManagerImpl.
+ */
 public class DiseaseControlManagerImpl implements DiseaseControlManager {
 
+	/** The diseases. */
 	private Disease[] diseases;
+	
+	/** The patients. */
 	private Patient[] patients;
 
+	/**
+	 * Instantiates a new disease control manager impl.
+	 *
+	 * @param maxDiseases the max diseases
+	 * @param maxPatients the max patients
+	 */
 	DiseaseControlManagerImpl(int maxDiseases, int maxPatients) {
 		if (maxDiseases <= 0 || maxPatients <= 0) {
 			throw new IllegalArgumentException("Supplied Integer cannot be used to initialize the arrays");
@@ -17,6 +29,13 @@ public class DiseaseControlManagerImpl implements DiseaseControlManager {
 		this.diseases = new Disease[maxDiseases];
 	}
 
+	/**
+	 * Adds the disease.
+	 *
+	 * @param name the name
+	 * @param isInfectious the is infectious
+	 * @return the disease
+	 */
 	@Override
 	public Disease addDisease(String name, Boolean isInfectious) {
 		if (isDiseasesArrayFull()) {
@@ -46,6 +65,11 @@ public class DiseaseControlManagerImpl implements DiseaseControlManager {
 		return newDisease;
 	}
 
+	/**
+	 * Checks if is diseases array full.
+	 *
+	 * @return true, if is diseases array full
+	 */
 	private boolean isDiseasesArrayFull() {
 		// TODO Auto-generated method stub
 		for (Disease disease : diseases) {
@@ -56,6 +80,12 @@ public class DiseaseControlManagerImpl implements DiseaseControlManager {
 		return true;
 	}
 
+	/**
+	 * Gets the disease.
+	 *
+	 * @param diseaseId the disease id
+	 * @return the disease
+	 */
 	@Override
 	public Disease getDisease(UUID diseaseId) {
 		for (Disease disease : diseases) {
@@ -66,6 +96,15 @@ public class DiseaseControlManagerImpl implements DiseaseControlManager {
 		return null;
 	}
 
+	/**
+	 * Adds the patient.
+	 *
+	 * @param firstName the first name
+	 * @param lastName the last name
+	 * @param maxDiseases the max diseases
+	 * @param maxExposures the max exposures
+	 * @return the patient
+	 */
 	@Override
 	public Patient addPatient(String firstName, String lastName, int maxDiseases, int maxExposures) {
 		if (isPatientArrayFull()) {
@@ -86,6 +125,11 @@ public class DiseaseControlManagerImpl implements DiseaseControlManager {
 		return patient;
 	}
 
+	/**
+	 * Checks if is patient array full.
+	 *
+	 * @return true, if is patient array full
+	 */
 	private boolean isPatientArrayFull() {
 		for (Patient patient : patients) {
 			if (patient == null) {
@@ -95,6 +139,12 @@ public class DiseaseControlManagerImpl implements DiseaseControlManager {
 		return true;
 	}
 
+	/**
+	 * Gets the patient.
+	 *
+	 * @param patientId the patient id
+	 * @return the patient
+	 */
 	@Override
 	public Patient getPatient(UUID patientId) {
 		for (Patient patient : patients) {
@@ -105,6 +155,12 @@ public class DiseaseControlManagerImpl implements DiseaseControlManager {
 		return null;
 	}
 
+	/**
+	 * Adds the disease to patient.
+	 *
+	 * @param patientId the patient id
+	 * @param diseaseId the disease id
+	 */
 	@Override
 	public void addDiseaseToPatient(UUID patientId, UUID diseaseId) {
 
@@ -125,6 +181,12 @@ public class DiseaseControlManagerImpl implements DiseaseControlManager {
 
 	}
 
+	/**
+	 * Adds the exposure to patient.
+	 *
+	 * @param patientId the patient id
+	 * @param exposure the exposure
+	 */
 	@Override
 	public void addExposureToPatient(UUID patientId, Exposure exposure) {
 		for (Patient patient : patients) {

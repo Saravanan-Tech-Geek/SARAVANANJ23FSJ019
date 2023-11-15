@@ -22,6 +22,7 @@ public class FileInputOutputDemo2 {
 			fw.write(c,0,n);
 		}
 		fw.close();
+		fr.close();
 	}
 
 }

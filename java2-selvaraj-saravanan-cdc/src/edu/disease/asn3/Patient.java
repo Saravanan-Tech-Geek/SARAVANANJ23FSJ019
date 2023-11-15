@@ -8,21 +8,38 @@ import java.util.UUID;
 import exception.UnknownExposureTypeException;
 
 /**
- * 
+ * The Class Patient.
+ *
  * @author Saravanan Selvaraj
  * @version 1.0.0
  */
 
 public class Patient implements Comparable<Patient>, Serializable {
 	
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 	
+	/** The patient id. */
 	private UUID patientId;
+	
+	/** The first name. */
 	private String firstName;
+	
+	/** The last name. */
 	private String lastName;
+	
+	/** The exposures. */
 	private Exposure[] exposures;
+	
+	/** The disease ids. */
 	private UUID[] diseaseIds;
 
+	/**
+	 * Instantiates a new patient.
+	 *
+	 * @param maxDiseases the max diseases
+	 * @param maxExposures the max exposures
+	 */
 	public Patient(int maxDiseases, int maxExposures) {
 		if (maxDiseases <= 0 || maxExposures <= 0) {
 			throw new UnknownExposureTypeException("maxDiseases and maxExposure must be positive values");
@@ -32,6 +49,11 @@ public class Patient implements Comparable<Patient>, Serializable {
 
 	}
 
+	/**
+	 * Adds the disease id.
+	 *
+	 * @param dieaseId the diease id
+	 */
 	public void addDiseaseId(UUID dieaseId) {
 		if (isDiseaseIdsFull()) {
 			throw new IndexOutOfBoundsException("Disease Array is full");
@@ -44,6 +66,11 @@ public class Patient implements Comparable<Patient>, Serializable {
 		}
 	}
 
+	/**
+	 * Checks if is disease ids full.
+	 *
+	 * @return true, if is disease ids full
+	 */
 	public boolean isDiseaseIdsFull() {
 		for (UUID diseaseId : diseaseIds) {
 			if (diseaseId == null) {
@@ -53,6 +80,11 @@ public class Patient implements Comparable<Patient>, Serializable {
 		return true;
 	}
 
+	/**
+	 * Adds the exposure.
+	 *
+	 * @param exposure the exposure
+	 */
 	public void addExposure(Exposure exposure) {
 		if (isExposureArrayFull()) {
 			throw new IndexOutOfBoundsException("Exposure Array is full");
@@ -65,6 +97,11 @@ public class Patient implements Comparable<Patient>, Serializable {
 		}
 	}
 
+	/**
+	 * Checks if is exposure array full.
+	 *
+	 * @return true, if is exposure array full
+	 */
 	private boolean isExposureArrayFull() {
 		for (Exposure exposure : exposures) {
 			if (exposure == null) {
@@ -75,6 +112,8 @@ public class Patient implements Comparable<Patient>, Serializable {
 	}
 
 	/**
+	 * Gets the patient id.
+	 *
 	 * @return the patientId
 	 */
 	public UUID getPatientId() {
@@ -82,6 +121,8 @@ public class Patient implements Comparable<Patient>, Serializable {
 	}
 
 	/**
+	 * Sets the patient id.
+	 *
 	 * @param patientId the patientId to set
 	 */
 	public void setPatientId(UUID patientId) {
@@ -89,6 +130,8 @@ public class Patient implements Comparable<Patient>, Serializable {
 	}
 
 	/**
+	 * Gets the first name.
+	 *
 	 * @return the firstName
 	 */
 	public String getFirstName() {
@@ -96,6 +139,8 @@ public class Patient implements Comparable<Patient>, Serializable {
 	}
 
 	/**
+	 * Sets the first name.
+	 *
 	 * @param firstName the firstName to set
 	 */
 	public void setFirstName(String firstName) {
@@ -103,6 +148,8 @@ public class Patient implements Comparable<Patient>, Serializable {
 	}
 
 	/**
+	 * Gets the last name.
+	 *
 	 * @return the lastName
 	 */
 	public String getLastName() {
@@ -110,6 +157,8 @@ public class Patient implements Comparable<Patient>, Serializable {
 	}
 
 	/**
+	 * Sets the last name.
+	 *
 	 * @param lastName the lastName to set
 	 */
 	public void setLastName(String lastName) {
@@ -117,6 +166,8 @@ public class Patient implements Comparable<Patient>, Serializable {
 	}
 
 	/**
+	 * Gets the exposures.
+	 *
 	 * @return the exposures
 	 */
 	public Exposure[] getExposures() {
@@ -124,17 +175,30 @@ public class Patient implements Comparable<Patient>, Serializable {
 	}
 
 	/**
+	 * Gets the disease ids.
+	 *
 	 * @return the diseaseIds
 	 */
 	public UUID[] getDiseaseIds() {
 		return diseaseIds;
 	}
 
+	/**
+	 * Hash code.
+	 *
+	 * @return the int
+	 */
 	@Override
 	public int hashCode() {
 		return Objects.hash(patientId);
 	}
 
+	/**
+	 * Equals.
+	 *
+	 * @param obj the obj
+	 * @return true, if successful
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -147,12 +211,23 @@ public class Patient implements Comparable<Patient>, Serializable {
 		return Objects.equals(patientId, other.patientId);
 	}
 
+	/**
+	 * To string.
+	 *
+	 * @return the string
+	 */
 	@Override
 	public String toString() {
 		return "Patient [patientId=" + patientId + ", firstName=" + firstName + ", lastName=" + lastName
 				+ ", exposures=" + Arrays.toString(exposures) + ", diseaseIds=" + Arrays.toString(diseaseIds) + "]";
 	}
 
+	/**
+	 * Compare to.
+	 *
+	 * @param that the that
+	 * @return the int
+	 */
 	@Override
 	public int compareTo(Patient that) {
 		// Check for null values and handle them appropriately
@@ -183,6 +258,12 @@ public class Patient implements Comparable<Patient>, Serializable {
 		return firstNameComparison;
 	}
 
+	/**
+	 * Checks for exposure.
+	 *
+	 * @param exposure the exposure
+	 * @return true, if successful
+	 */
 	public boolean hasExposure(Exposure exposure) {
 		for (Exposure e : exposures) {
             if (e != null && e.equals(exposure)) {
@@ -192,6 +273,12 @@ public class Patient implements Comparable<Patient>, Serializable {
         return false;
     }
 
+	/**
+	 * Checks for disease.
+	 *
+	 * @param diseaseId the disease id
+	 * @return true, if successful
+	 */
 	public boolean hasDisease(UUID diseaseId) {
 		for (UUID d : diseaseIds) {
             if (d != null && d.equals(diseaseId)) {

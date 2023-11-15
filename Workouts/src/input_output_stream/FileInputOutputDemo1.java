@@ -51,7 +51,8 @@ public class FileInputOutputDemo1 {
 			fos.write(b,0,n);
 		}
 		
-		
+		fis.close();
+		fos.close();
 		
 	}
 

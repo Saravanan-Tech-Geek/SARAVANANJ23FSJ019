@@ -4,13 +4,31 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * The Class DiseaseControlManagerImpl.
+ * @author Saravanan Selvaraj
+ * @version 1.0.0
+ */
 public class DiseaseControlManagerImpl implements DiseaseControlManager {
 
+	/** The diseases. */
 	private List<Disease> diseases;
+	
+	/** The patients. */
 	private List<Patient> patients;
+	
+	/** The max diseases. */
 	private final int maxDiseases;
+	
+	/** The max patients. */
 	private final int maxPatients;
 
+	/**
+	 * Instantiates a new disease control manager impl.
+	 *
+	 * @param maxDiseases the max diseases
+	 * @param maxPatients the max patients
+	 */
 	public DiseaseControlManagerImpl(int maxDiseases, int maxPatients) {
 		if (maxDiseases <= 0 || maxPatients <= 0) {
 			throw new IllegalArgumentException("Supplied Integer cannot be used to initialize the lists");
@@ -21,6 +39,13 @@ public class DiseaseControlManagerImpl implements DiseaseControlManager {
 		this.diseases = new ArrayList<>();
 	}
 
+	/**
+	 * Adds the disease.
+	 *
+	 * @param name the name
+	 * @param isInfectious the is infectious
+	 * @return the disease
+	 */
 	@Override
 	public Disease addDisease(String name, Boolean isInfectious) {
 		if (isDiseasesListFull()) {
@@ -45,10 +70,21 @@ public class DiseaseControlManagerImpl implements DiseaseControlManager {
 		return newDisease;
 	}
 
+	/**
+	 * Checks if is diseases list full.
+	 *
+	 * @return true, if is diseases list full
+	 */
 	private boolean isDiseasesListFull() {
 		return diseases.size() >= maxDiseases;
 	}
 
+	/**
+	 * Gets the disease.
+	 *
+	 * @param diseaseId the disease id
+	 * @return the disease
+	 */
 	@Override
 	public Disease getDisease(UUID diseaseId) {
 		for (Disease disease : diseases) {
@@ -59,6 +95,15 @@ public class DiseaseControlManagerImpl implements DiseaseControlManager {
 		return null;
 	}
 
+	/**
+	 * Adds the patient.
+	 *
+	 * @param firstName the first name
+	 * @param lastName the last name
+	 * @param maxDiseases the max diseases
+	 * @param maxExposures the max exposures
+	 * @return the patient
+	 */
 	@Override
 	public Patient addPatient(String firstName, String lastName, int maxDiseases, int maxExposures) {
 		if (isPatientsListFull()) {
@@ -74,10 +119,21 @@ public class DiseaseControlManagerImpl implements DiseaseControlManager {
 		return patient;
 	}
 
+	/**
+	 * Checks if is patients list full.
+	 *
+	 * @return true, if is patients list full
+	 */
 	private boolean isPatientsListFull() {
 		return patients.size() >= maxPatients;
 	}
 
+	/**
+	 * Gets the patient.
+	 *
+	 * @param patientId the patient id
+	 * @return the patient
+	 */
 	@Override
 	public Patient getPatient(UUID patientId) {
 		for (Patient patient : patients) {
@@ -88,6 +144,12 @@ public class DiseaseControlManagerImpl implements DiseaseControlManager {
 		return null;
 	}
 
+	/**
+	 * Adds the disease to patient.
+	 *
+	 * @param patientId the patient id
+	 * @param diseaseId the disease id
+	 */
 	@Override
 	public void addDiseaseToPatient(UUID patientId, UUID diseaseId) {
 
@@ -101,6 +163,12 @@ public class DiseaseControlManagerImpl implements DiseaseControlManager {
 		}
 	}
 
+	/**
+	 * Adds the exposure to patient.
+	 *
+	 * @param patientId the patient id
+	 * @param exposure the exposure
+	 */
 	@Override
 	public void addExposureToPatient(UUID patientId, Exposure exposure) {
 		Patient patient = getPatient(patientId);

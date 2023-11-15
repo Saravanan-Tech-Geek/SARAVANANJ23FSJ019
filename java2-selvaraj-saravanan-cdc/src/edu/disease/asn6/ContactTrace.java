@@ -5,14 +5,31 @@ import static edu.disease.asn1.constants.ExposureConstants.DIRECT_EXPOSURE;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * The Class ContactTrace.
+ * @author Saravanan Selvaraj
+ * @version 1.0.0
+ */
 public class ContactTrace {
 
+	/** The disease control manager. */
 	private final DiseaseControlManager diseaseControlManager;
 
+	/**
+	 * Instantiates a new contact trace.
+	 *
+	 * @param diseaseControlManager the disease control manager
+	 */
 	public ContactTrace(DiseaseControlManager diseaseControlManager) {
 		this.diseaseControlManager = diseaseControlManager;
 	}
 
+	/**
+	 * Find patient zero.
+	 *
+	 * @param patient the patient
+	 * @return the patient zero
+	 */
 	public PatientZero findPatientZero(Patient patient) {
 		Exposure earliestExposure = findEarliestExposure(patient.getExposures());
 		boolean exposed = earliestExposure != null;
@@ -25,6 +42,12 @@ public class ContactTrace {
 		return patientZero;
 	}
 
+	/**
+	 * Find earliest exposure.
+	 *
+	 * @param exposures the exposures
+	 * @return the exposure
+	 */
 	private Exposure findEarliestExposure(List<Exposure> exposures) {
 		Exposure priorEarliestExposure = null;
 
