@@ -45,7 +45,6 @@ public class FileInputOutputDemo1 {
 		int optimized = 8;
 		byte b[] = new byte[optimized];
 		while((n = fis.read(b)) != -1) {
-			String ss = new String();
 			String s = new String(b,0,n);
 			System.out.print(s); //writing to console
 			fos.write(b,0,n);

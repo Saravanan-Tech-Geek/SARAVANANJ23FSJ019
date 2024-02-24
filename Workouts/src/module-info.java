@@ -6,4 +6,5 @@
  *
  */
 module GaayathriFolder {
+	requires java.sql;
 }
